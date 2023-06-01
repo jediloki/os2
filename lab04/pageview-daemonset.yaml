@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: pageview-daemonset
+  labels:
+    app: pageview-daemonset
+spec:
+  selector:
+    matchLabels:
+      app: pageview-daemonset
+  template:
+    metadata:
+      labels:
+        app: pageview-daemonset
+    spec:
+      containers:
+      - name: pageview-stateful
+        image: docker.io/nisburgh/pageview:v2.0

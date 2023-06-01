@@ -1,0 +1,4 @@
+
+oc edit statefulset pageview-stateful
+
+then search replicas, change the number, save
