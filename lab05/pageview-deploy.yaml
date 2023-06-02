@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pageview
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: pageview
+  template:
+    metadata:
+      labels:
+        tier: pageview
+    spec:
+      containers:
+      - name: pageview
+        image: docker.io/nisburgh/pageview:v1.0.10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+      - name: ns
+        image: docker.io/nicolaka/netshoot
+        tty: true
